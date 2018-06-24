@@ -15,109 +15,44 @@
         Add-ECSLocalGPOUserRightAssignment -Identity @("PCName\LocalGroup","S-1-5-32-555","domain\exampleuser") -SeShutdownPrivilege
     #>
     [CmdletBinding()]
+    
+
     Param
 	    (
-        [Parameter (ParameterSetName='SeNetworkLogonRight')]
-        [Parameter (ParameterSetName='SeBackupPrivilege')]
-        [Parameter (ParameterSetName='SeChangeNotifyPrivilege')]
-        [Parameter (ParameterSetName='SeSystemtimePrivilege')]
-        [Parameter (ParameterSetName='SeCreatePagefilePrivilege')]
-        [Parameter (ParameterSetName='SeDebugPrivilege')]
-        [Parameter (ParameterSetName='SeRemoteShutdownPrivilege')]
-        [Parameter (ParameterSetName='SeAuditPrivilege')]
-        [Parameter (ParameterSetName='SeIncreaseQuotaPrivilege')]
-        [Parameter (ParameterSetName='SeIncreaseBasePriorityPrivilege')]
-        [Parameter (ParameterSetName='SeLoadDriverPrivilege')]
-        [Parameter (ParameterSetName='SeBatchLogonRight')]
-        [Parameter (ParameterSetName='SeServiceLogonRight')]
-        [Parameter (ParameterSetName='SeInteractiveLogonRight')]
-        [Parameter (ParameterSetName='SeSecurityPrivilege')]
-        [Parameter (ParameterSetName='SeSystemEnvironmentPrivilege')]
-        [Parameter (ParameterSetName='SeProfileSingleProcessPrivilege')]
-        [Parameter (ParameterSetName='SeSystemProfilePrivilege')]
-        [Parameter (ParameterSetName='SeAssignPrimaryTokenPrivilege')]
-        [Parameter (ParameterSetName='SeRestorePrivilege')]
-        [Parameter (ParameterSetName='SeShutdownPrivilege')]
-        [Parameter (ParameterSetName='SeTakeOwnershipPrivilege')]
-        [Parameter (ParameterSetName='SeDenyNetworkLogonRight')]
-        [Parameter (ParameterSetName='SeDenyInteractiveLogonRight')]
-        [Parameter (ParameterSetName='SeUndockPrivilege')]
-        [Parameter (ParameterSetName='SeManageVolumePrivilege')]
-        [Parameter (ParameterSetName='SeRemoteInteractiveLogonRight')]
-        [Parameter (ParameterSetName='SeImpersonatePrivilege')]
-        [Parameter (ParameterSetName='SeCreateGlobalPrivilege')]
-        [Parameter (ParameterSetName='SeIncreaseWorkingSetPrivilege')]
-        [Parameter (ParameterSetName='SeTimeZonePrivilege')]
-        [Parameter (ParameterSetName='SeCreateSymbolicLinkPrivilege')]
-        [Parameter (ParameterSetName='SeMachineAccountPrivilege')]
-        $Identity,
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullorEmpty()]
+        [String]$Identity,
 
-        [Parameter (ParameterSetName='SeNetworkLogonRight')]
-        [switch]$SeNetworkLogonRight,
-        [Parameter (ParameterSetName='SeBackupPrivilege')]
-        [switch]$SeBackupPrivilege,
-        [Parameter (ParameterSetName='SeChangeNotifyPrivilege')]
-        [switch]$SeChangeNotifyPrivilege,
-        [Parameter (ParameterSetName='SeSystemtimePrivilege')]
-        [switch]$SeSystemtimePrivilege,
-        [Parameter (ParameterSetName='SeCreatePagefilePrivilege')]
-        [switch]$SeCreatePagefilePrivilege,
-        [Parameter (ParameterSetName='SeDebugPrivilege')]
-        [switch]$SeDebugPrivilege,
-        [Parameter (ParameterSetName='SeRemoteShutdownPrivilege')]
-        [switch]$SeRemoteShutdownPrivilege,
-        [Parameter (ParameterSetName='SeAuditPrivilege')]
-        [switch]$SeAuditPrivilege,
-        [Parameter (ParameterSetName='SeIncreaseQuotaPrivilege')]
-        [switch]$SeIncreaseQuotaPrivilege,
-        [Parameter (ParameterSetName='SeIncreaseBasePriorityPrivilege')]
-        [switch]$SeIncreaseBasePriorityPrivilege,
-        [Parameter (ParameterSetName='SeLoadDriverPrivilege')]
-        [switch]$SeLoadDriverPrivilege,
-        [Parameter (ParameterSetName='SeBatchLogonRight')]
-        [switch]$SeBatchLogonRight,
-        [Parameter (ParameterSetName='SeServiceLogonRight')]
-        [switch]$SeServiceLogonRight,
-        [Parameter (ParameterSetName='SeInteractiveLogonRight')]
-        [switch]$SeInteractiveLogonRight,
-        [Parameter (ParameterSetName='SeSecurityPrivilege')]
-        [switch]$SeSecurityPrivilege,
-        [Parameter (ParameterSetName='SeSystemEnvironmentPrivilege')]
-        [switch]$SeSystemEnvironmentPrivilege,
-        [Parameter (ParameterSetName='SeProfileSingleProcessPrivilege')]
-        [switch]$SeProfileSingleProcessPrivilege,
-        [Parameter (ParameterSetName='SeSystemProfilePrivilege')]
-        [switch]$SeSystemProfilePrivilege,
-        [Parameter (ParameterSetName='SeAssignPrimaryTokenPrivilege')]
-        [switch]$SeAssignPrimaryTokenPrivilege,
-        [Parameter (ParameterSetName='SeRestorePrivilege')]
-        [switch]$SeRestorePrivilege,
-        [Parameter (ParameterSetName='SeShutdownPrivilege')]
-        [switch]$SeShutdownPrivilege,
-        [Parameter (ParameterSetName='SeTakeOwnershipPrivilege')]
-        [switch]$SeTakeOwnershipPrivilege,
-        [Parameter (ParameterSetName='SeDenyNetworkLogonRight')]
-        [switch]$SeDenyNetworkLogonRight,
-        [Parameter (ParameterSetName='SeDenyInteractiveLogonRight')]
-        [switch]$SeDenyInteractiveLogonRight,
-        [Parameter (ParameterSetName='SeUndockPrivilege')]
-        [switch]$SeUndockPrivilege,
-        [Parameter (ParameterSetName='SeManageVolumePrivilege')]
-        [switch]$SeManageVolumePrivilege,
-        [Parameter (ParameterSetName='SeRemoteInteractiveLogonRight')]
-        [switch]$SeRemoteInteractiveLogonRight,
-        [Parameter (ParameterSetName='SeImpersonatePrivilege')]
-        [switch]$SeImpersonatePrivilege,
-        [Parameter (ParameterSetName='SeCreateGlobalPrivilege')]
-        [switch]$SeCreateGlobalPrivilege,
-        [Parameter (ParameterSetName='SeIncreaseWorkingSetPrivilege')]
-        [switch]$SeIncreaseWorkingSetPrivilege,
-        [Parameter (ParameterSetName='SeTimeZonePrivilege')]
-        [switch]$SeTimeZonePrivilege,
-        [Parameter (ParameterSetName='SeCreateSymbolicLinkPrivilege')]
-        [switch]$SeCreateSymbolicLinkPrivilege,
-        [Parameter (ParameterSetName='SeMachineAccountPrivilege')]
-        [switch]$SeMachineAccountPrivilege
+        [Parameter(Mandatory=$true)]
+        [Validatescript(
+            {
+            #Just finding the CSV so we can dynamical validate the parameter value 
+            $FunctionRootPath = $PSScriptRoot
+            $PowershellModuleRootPath = $($FunctionRootPath).Replace("\Functions","")
+
+            #Getting a list of valid parameter values
+            $SeceditNameValidationSet = $null
+            $AllSeceditNamesToValidate = Import-csv -Path "$PowershellModuleRootPath\Dependent Files\UserRightsMapping.csv" | Select-object -ExpandProperty SecEditName | sort-object
+            
+            #Creating a single line string, so if we find an invalid parameter, we can tell the user all the correct values
+            Foreach ($SeceditNameToValidate in $AllSeceditNamesToValidate)
+                {
+                $SeceditNameValidationSet += """$SeceditNameToValidate"""
+                }
+            $SeceditNameValidationSet = $SeceditNameValidationSet -replace ('""','","')
+
+            #Finally we validate the parameter
+			If ($SeceditNameValidationSet -like "*$_*") 
+                {
+                $true
+                }
+			else 
+                {
+                Throw "Incorrect value, please use one of the following $($SeceditNameValidationSet)"
+                }
+			}
+            )]
+        [String]$SecEditName
 
 	    )
 

@@ -10,10 +10,10 @@
 #ModuleToProcess = ''
 
 # Version number of this module.
-ModuleVersion = '1.0.0'
+ModuleVersion = '2.0.0'
 
 # ID used to uniquely identify this module
-GUID = '6ca8f8da-8cac-4008-a953-23be2a246776'
+GUID = '492fd627-e08e-4f15-96c8-6f2d703d37a9'
 
 # Author of this module
 Author = 'Eric C. Singer'
