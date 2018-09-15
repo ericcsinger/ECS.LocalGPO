@@ -10,10 +10,10 @@
 #ModuleToProcess = ''
 
 # Version number of this module.
-ModuleVersion = '2.0.1'
+ModuleVersion = '2.1.0'
 
 # ID used to uniquely identify this module
-GUID = 'fb8d2fd2-8c13-4fa0-90d0-7f1bbe21b29a'
+GUID = '76aae92e-47c8-402b-98a0-cad9700d9dbd'
 
 # Author of this module
 Author = 'Eric C. Singer'
@@ -46,7 +46,7 @@ CLRVersion = ''
 ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @()
+RequiredModules = @("ECS.WindowsGeneric")
 
 # Assemblies that must be loaded prior to importing this module
 RequiredAssemblies = @()
@@ -67,7 +67,7 @@ NestedModules= @('ECS.LocalGPO.psm1')
 FunctionsToExport = '*'
 
 # Cmdlets to export from this module
-CmdletsToExport = ''
+CmdletsToExport = 'Convert-ECSSIDToAccount','Convert-ECSAccountToSID'
 
 # Variables to export from this module
 VariablesToExport = '*'

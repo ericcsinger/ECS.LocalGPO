@@ -35,7 +35,6 @@
     $SecEditErrOutPutFullFileName = $TempDirectory + "\" + $CurrentDateTime + "_" + "SeceditErrOutput.txt"
     $FunctionRootPath = $PSScriptRoot
     $PowershellModuleRootPath = $($FunctionRootPath).Replace("\Functions","")
-    $UserRightMappingsCSV = $PowershellModuleRootPath + "\Dependent Files\UserRightsMapping.csv"
     
 
     #End Dynamic Parameters
@@ -55,7 +54,6 @@
     Write-verbose -Message "Secedit Error Output file name: $($SecEditErrOutPutFullFileName)"
     Write-Verbose -Message "Function Root Path = $($FunctionRootPath)"
     Write-Verbose -Message "Powershell Module Root Path: $($PowershellModuleRootPath)"
-    Write-Verbose -Message "User Right Mappings CSV Path: $($UserRightMappingsCSV)"
 
     If ($MergedPolicy -eq $true)
         {
@@ -77,11 +75,11 @@
     #Importing the User rights mapping CSV
 
     Write-Verbose -Message "##########################################################################################################"
-    Write-Verbose -Message "Importing the User rights mapping CSV"
+    Write-Verbose -Message "Getting a list of available user rights"
     
     Try
         {
-        $UserRightsMapings = Import-Csv -Path $UserRightMappingsCSV -ErrorAction Stop
+        $UserRightsMapings = Show-ECSLocalGPOAvailableUserRightAssignments
         }
     Catch
         {
@@ -91,7 +89,7 @@
         }
 
 
-    Write-Verbose -Message "END Importing the User rights mapping CSV"
+    Write-Verbose -Message "END Getting a list of available user rights"
     Write-Verbose -Message "##########################################################################################################"
 
     #End Importing the User rights mapping CSV
@@ -253,7 +251,7 @@
 	                    FriendlyUserRightName = $($UserRightMappingMatch.FriendlyUserRightName)
                         UserRightDescription = "$($UserRightMappingMatch.Description)"
 	                    SecEditUserRightName = $($UserRightSeceditName)
-	                    SIDWithOutTheAsterix = $($objSID.value)
+	                    SIDWithOutTheAsterix = $($SIDWithOutTheAsterix)
                         SIDWITHTheAsterix = $($SplitSID)
 	                    NTAccount = $($NameToSID.NTAccount)
                         SAMAccountName = $($NameToSID.SAMAccountName)

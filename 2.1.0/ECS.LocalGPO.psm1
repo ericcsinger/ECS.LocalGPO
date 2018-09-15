@@ -3,4 +3,4 @@
 . "$PSScriptRoot\Functions\Get-ECSLocalGPOUserRightAssignment.ps1"
 . "$PSScriptRoot\Functions\Add-ECSLocalGPOUserRightAssignment.ps1"
 . "$PSScriptRoot\Functions\Remove-ECSLocalGPOUserRightAssignment.ps1"
-. "$PSScriptRoot\Functions\List-ECSLocalGPOAvailableUserRightAssignments.ps1"
+. "$PSScriptRoot\Functions\Show-ECSLocalGPOAvailableUserRightAssignments.ps1"
